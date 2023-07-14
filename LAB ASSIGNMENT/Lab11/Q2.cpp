@@ -2,36 +2,26 @@
 #include <vector>
 #include <cstring>
 using namespace std;
-
-class Stack
-{
-    vector<char> arr;
-
-public:
-    void push(char a)
-    {
-        arr.push_back(a);
+class Dynamic_Stack{
+    vector<char> abc;
+    public:
+    void push(char nm){
+        abc.push_back(nm);
     }
-    char pop()
-    {
-        char temp = *arr.rbegin();
-        arr.pop_back();
-        return temp;
+    char pop(){
+        char cba = *abc.rbegin();
+        abc.pop_back();
+        return cba;
     }
-    char peek()
-    {
-        return *arr.rbegin();
+    char peek(){
+        return *abc.rbegin();
     }
-    void reverse()
-    {
+    void reverse(){
         vector<char> temp;
         vector<char> word;
-
-        for (int i = 0; i < arr.size(); i++)
-        {
-            if (arr[i] != ' ')
-            {
-                word.push_back(arr[i]);
+        for (int i = 0; i < abc.size(); i++){
+            if (abc[i] != ' '){
+                word.push_back(abc[i]);
             }
             else
             {
@@ -43,40 +33,34 @@ public:
                 temp.push_back(' ');
             }
         }
-
-        // Reverse the last word
-        while (!word.empty())
-        {
+        while (!word.empty()){
             temp.push_back(word.back());
             word.pop_back();
         }
-
-        arr = temp;
+        abc = temp;
     }
-    void print()
-    {
-        for (int i = 0; i < arr.size(); i++)
-        {
-            cout << arr[i];
+    void print(){
+        for (int i = 0; i < abc.size(); i++){
+            cout << abc[i];
         }
         cout << endl;
     }
 };
-
-int main()
-{
-    Stack stack;
+int main(){
+    Dynamic_Stack s;
     char arr[50];
     cout << "Enter sentence: ";
     cin.getline(arr, 50);
     for (int i = 0; i < strlen(arr); i++)
     {
-        stack.push(arr[i]);
+        s.push(arr[i]);
     }
-    stack.print();
-    stack.reverse();
-    stack.print();
-    stack.reverse();
-    stack.print();
+    // s.print();
+    cout<<"Sentence After Reverse:";
+    s.reverse();
+    s.print();
+    s.reverse();
+    cout<<"Sentence After Reverse Again:";
+    s.print();
     return 0;
 }

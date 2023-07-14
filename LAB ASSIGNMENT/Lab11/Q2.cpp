@@ -1,65 +1,82 @@
 #include <iostream>
 #include <vector>
-#include <sstream>
-#include <algorithm>
-
+#include <cstring>
 using namespace std;
 
-class DynamicStack {
-private:
-    vector<string> stack;
+class Stack
+{
+    vector<char> arr;
 
 public:
-    void push(const string& element) {
-        stack.push_back(element);
+    void push(char a)
+    {
+        arr.push_back(a);
     }
+    char pop()
+    {
+        char temp = *arr.rbegin();
+        arr.pop_back();
+        return temp;
+    }
+    char peek()
+    {
+        return *arr.rbegin();
+    }
+    void reverse()
+    {
+        vector<char> temp;
+        vector<char> word;
 
-    void pop() {
-        if (!isEmpty()) {
-            stack.pop_back();
+        for (int i = 0; i < arr.size(); i++)
+        {
+            if (arr[i] != ' ')
+            {
+                word.push_back(arr[i]);
+            }
+            else
+            {
+                while (!word.empty())
+                {
+                    temp.push_back(word.back());
+                    word.pop_back();
+                }
+                temp.push_back(' ');
+            }
         }
-    }
 
-    string peek() const {
-        if (!isEmpty()) {
-            return stack.back();
+        // Reverse the last word
+        while (!word.empty())
+        {
+            temp.push_back(word.back());
+            word.pop_back();
         }
-        return "";
-    }
 
-    bool isEmpty() const {
-        return stack.empty();
+        arr = temp;
     }
-
-    void reverse() {
-        for (string& word : stack) {
-            reverse(word.begin(), word.end());
+    void print()
+    {
+        for (int i = 0; i < arr.size(); i++)
+        {
+            cout << arr[i];
         }
+        cout << endl;
     }
 };
 
-int main() {
-    string sentence;
-    cout << "Enter a sentence: ";
-    getline(cin, sentence);
-
-    istringstream iss(sentence);
-    string word;
-
-    DynamicStack stack;
-
-    while (iss >> word) {
-        stack.push(word);
+int main()
+{
+    Stack stack;
+    char arr[50];
+    cout << "Enter sentence: ";
+    cin.getline(arr, 50);
+    for (int i = 0; i < strlen(arr); i++)
+    {
+        stack.push(arr[i]);
     }
-
+    stack.print();
     stack.reverse();
-
-    cout << "Reversed sentence: ";
-    while (!stack.isEmpty()) {
-        cout << stack.peek() << " ";
-        stack.pop();
-    }
-    cout << endl;
-
+    stack.print();
+    stack.reverse();
+    stack.print();
     return 0;
 }

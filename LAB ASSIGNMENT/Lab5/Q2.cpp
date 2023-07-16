@@ -78,7 +78,7 @@
             cout<<"Enter the Course name:"<<endl;
             cin>>coursename;
             cout<<"Enter the Designation:"<<endl;
-            cin>>designation;
+            cin>>designation;   
         }
             void display_data(){
             cout<<"Department name is :"<<department<<endl;

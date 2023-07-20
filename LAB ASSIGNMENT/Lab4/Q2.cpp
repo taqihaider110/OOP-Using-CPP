@@ -11,22 +11,21 @@ class DynamicArray{
 			for(int i=0;i<arraysize;i++){
 				array[i]=0;
 			}
+		}
+		void add(int value){	
+			int i=0;
+			int* temp=new int[arraysize + 1];
+			for(i=0;i<arraysize;i++){
+				temp[i]=array[i];
 			}
-			void add(int value){
-				
-				int i=0;
-				int* temp=new int[arraysize + 1];
-				for(i=0;i<arraysize;i++){
-					temp[i]=array[i];
-				}
-				temp[i]=value;
-				delete[] array;
-				arraysize++;
-				array=temp;
-			}
-			int size(){
-				return arraysize;
-			}
+			temp[i]=value;
+			delete[] array;
+			arraysize++;
+			array=temp;
+		}
+		int size(){
+			return arraysize;
+		}
 };
 int main(){
 	DynamicArray obj1(3);

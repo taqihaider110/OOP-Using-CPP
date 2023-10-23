@@ -62,6 +62,7 @@ public:
         delete[] arr2_1d;
     }
     void multiply(matrix &x){
+        
 
     }
 };
